@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeSuite;
 import java.time.Duration;
 
 import static DriverFactory.DriverFactory.getChromeDriver;
-import static SupportVariables.URLs.BASE_URL;
+import static SupportVariables.Urls.BASE_URL;
 
 public class BaseSet {
     WebDriver driver;

@@ -2,7 +2,7 @@ package SupportVariables;
 
 import junitx.util.PropertyManager;
 
-public class URLs {
+public class Urls {
     /**
      * Over here we provide the variable for environment that is declared in the local.properties or server.properties file
      * Also we declare the static Strings for the urls that are constant.

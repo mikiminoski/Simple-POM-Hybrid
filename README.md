@@ -1,3 +1,5 @@
+#Simple POM template
+
 Read me:
 
 This project is using Java, Maven, Selenium Webdriver, TestNG for automated web testing
@@ -16,7 +18,9 @@ The dependencies from the project should be also downloaded before running the s
 
 There are .xml and .pom files that should be configured sometimes depends on what and where we would like to run the script.
 
-Under the project package there are resources folder with "server.properties" files that declares all the variables we use for running the script.
+Under the project package there are resources folder with "environment .properties" files that declares all the variables we use for running the script.    
+Keep in mind that locally you should set your own variables depending on the operating system you use.  
+There is local.properties file as an example for windows operating system.  
 We can update and create more XML files like this if we have more environments for server run.
 
 

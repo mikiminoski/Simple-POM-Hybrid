@@ -9,7 +9,6 @@ import org.testng.Assert;
 
 import java.time.Duration;
 import static DriverFactory.DriverFactory.getChromeDriver;
-import static SupportVariables.URLs.BASE_URL;
 
 public class HomePage {
 

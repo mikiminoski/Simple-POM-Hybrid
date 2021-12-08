@@ -11,8 +11,6 @@ import org.testng.Assert;
 import java.time.Duration;
 
 import static DriverFactory.DriverFactory.getChromeDriver;
-import static DriverFactory.DriverFactory.getFirefoxDriver;
-import static SupportVariables.URLs.BASE_URL;
 
 public class LoginPage {
 
@@ -36,7 +34,7 @@ public class LoginPage {
         return driver.findElement(By.xpath("The mail text field xpath"));
     }
 
-    private WebElement passTextField() {
+    private WebElement passwordTextField() {
         return driver.findElement(By.id("password"));
     }
 
@@ -44,7 +42,7 @@ public class LoginPage {
         return driver.findElement(By.id("remember"));
     }
 
-    private WebElement forgotPassButton() {
+    private WebElement forgotPasswordButton() {
         return driver.findElement(By.id("forgot_password_request_link"));
     }
 
@@ -60,11 +58,11 @@ public class LoginPage {
         return driver.findElement(By.id("info_message"));
     }
 
-    private WebElement passwordErrorMSG() {
+    private WebElement passwordErrorMessage() {
         return driver.findElement(By.id("validation_password_message"));
     }
 
-    private WebElement emailErrorMSG() {
+    private WebElement emailErrorMessage() {
         return driver.findElement(By.id("validation_email_message"));
     }
 
@@ -74,14 +72,14 @@ public class LoginPage {
      * Here are all methods examples from this class
      * Every method that takes action and stays on the page should return this class so we can do a method chaining
      */
-    public LoginPage enterMail(String email) {
+    public LoginPage enterEMail(String email) {
         emailTextField().sendKeys(email);
 
         return this;
     }
 
-    public LoginPage enterPass(String password) {
-        passTextField().sendKeys(password);
+    public LoginPage enterPassword(String password) {
+        passwordTextField().sendKeys(password);
 
         return this;
     }
@@ -92,7 +90,7 @@ public class LoginPage {
     }
 
     public LoginPage clickRememberMeButton() {
-        Assert.assertTrue(!rememberMeCheckbox().isSelected());
+        Assert.assertFalse(rememberMeCheckbox().isSelected());
 
         rememberMeCheckbox().click();
 
@@ -105,45 +103,45 @@ public class LoginPage {
         try {
             wait.until(ExpectedConditions.visibilityOf(errorMessageField()));
 
-            String errorMsg = errorMessageField().getText();
+            String errorMessage = errorMessageField().getText();
 
-            Assert.assertEquals(errorMsg,expectedErrorMessage);
+            Assert.assertEquals(errorMessage,expectedErrorMessage);
         } catch (StaleElementReferenceException e) {
             wait.until(ExpectedConditions.stalenessOf(errorMessageField()));
 
-            String errorMsg = errorMessageField().getText();
+            String errorMessage = errorMessageField().getText();
 
-            Assert.assertEquals(errorMsg,expectedErrorMessage);
+            Assert.assertEquals(errorMessage,expectedErrorMessage);
         }
 
         return this;
     }
 
     public LoginPage checkPasswordErrorMessage(String expectedErrorMessage) {
-        wait.until(ExpectedConditions.visibilityOf(passwordErrorMSG()));
+        wait.until(ExpectedConditions.visibilityOf(passwordErrorMessage()));
 
-        String plsEnterPass = passwordErrorMSG().getText();
+        String pleaseEnterPass = passwordErrorMessage().getText();
 
-        Assert.assertTrue(passwordErrorMSG().isDisplayed());
+        Assert.assertTrue(passwordErrorMessage().isDisplayed());
 
-        Assert.assertEquals(plsEnterPass, expectedErrorMessage);
+        Assert.assertEquals(pleaseEnterPass, expectedErrorMessage);
 
         return this;
     }
 
     public void clickForgetPassword() {
-        forgotPassButton().click();
+        forgotPasswordButton().click();
 
         wait.until(ExpectedConditions.urlToBe("SOME URL"));
 
     }
 
     public LoginPage checkMailErrorMessage(String expectedErrorMessage) {
-        wait.until(ExpectedConditions.visibilityOf(emailErrorMSG()));
+        wait.until(ExpectedConditions.visibilityOf(emailErrorMessage()));
 
-        String errorMessage = emailErrorMSG().getText();
+        String errorMessage = emailErrorMessage().getText();
 
-        Assert.assertTrue(emailErrorMSG().isDisplayed());
+        Assert.assertTrue(emailErrorMessage().isDisplayed());
 
         Assert.assertEquals(errorMessage, expectedErrorMessage);
 
@@ -158,14 +156,14 @@ public class LoginPage {
         Assert.assertTrue(emailTextField().isEnabled());
         Assert.assertTrue(emailTextField().isDisplayed());
 
-        Assert.assertTrue(passTextField().isDisplayed());
-        Assert.assertTrue(passTextField().isEnabled());
+        Assert.assertTrue(passwordTextField().isDisplayed());
+        Assert.assertTrue(passwordTextField().isEnabled());
 
         Assert.assertTrue(rememberMeCheckbox().isEnabled());
         Assert.assertTrue(rememberMeCheckbox().isDisplayed());
 
-        Assert.assertTrue(forgotPassButton().isDisplayed());
-        Assert.assertTrue(forgotPassButton().isEnabled());
+        Assert.assertTrue(forgotPasswordButton().isDisplayed());
+        Assert.assertTrue(forgotPasswordButton().isEnabled());
 
         Assert.assertTrue(signInButton().isEnabled());
         Assert.assertTrue(signInButton().isDisplayed());

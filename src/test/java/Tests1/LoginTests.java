@@ -12,83 +12,83 @@ import static pages.LoginPage.getLoginPage;
 
 public class LoginTests extends BaseSet {
 
-    HomePage homepage = getHomePage();
-    LoginPage loginpage = getLoginPage();
+    HomePage homePage = getHomePage();
+    LoginPage loginPage = getLoginPage();
 
 
     @Test (priority = 0, groups = "LoginTests")
     public void open_page_then_login_with_unregistered_mail() {
-        homepage.click_login();
+        homePage.click_login();
 
-        loginpage.enterMail("UNREGISTERED_MAIL")
-                .enterPass("INVALID_PASSWORD")
+        loginPage.enterEMail("UNREGISTERED_MAIL")
+                .enterPassword("INVALID_PASSWORD")
                 .clickSignIn();
 
-        loginpage.checkErrorMessage(ERROR_MESSAGE);
+        loginPage.checkErrorMessage(ERROR_MESSAGE);
     }
 
     @Test (priority = 0, groups = "LoginTests")
     public void open_page_then_login_with_wrong_password() {
-        homepage.click_login();
+        homePage.click_login();
 
-        loginpage.enterMail(ACCOUNT_MAIL)
-                .enterPass("INVALID_PASSWORD")
+        loginPage.enterEMail(ACCOUNT_MAIL)
+                .enterPassword("INVALID_PASSWORD")
                 .clickSignIn();
 
-        loginpage.checkErrorMessage(ERROR_MESSAGE);
+        loginPage.checkErrorMessage(ERROR_MESSAGE);
 
     }
 
     @Test (priority = 0, groups = "LoginTests")
     public void try_to_login_without_email_and_password() {
-        homepage.click_login();
+        homePage.click_login();
 
-        loginpage.clickSignIn();
+        loginPage.clickSignIn();
 
-        loginpage.checkMailErrorMessage(ERROR_MESSAGE)
+        loginPage.checkMailErrorMessage(ERROR_MESSAGE)
                 .checkPasswordErrorMessage(ERROR_MESSAGE);
     }
 
     @Test (priority = 0, groups = "LoginTests")
     public void try_to_login_without_email() {
-        homepage.click_login();
+        homePage.click_login();
 
-        loginpage.enterPass(ACCOUNT_PASS)
+        loginPage.enterPassword(ACCOUNT_PASS)
                 .clickSignIn();
 
-        loginpage.checkMailErrorMessage(ERROR_MESSAGE);
+        loginPage.checkMailErrorMessage(ERROR_MESSAGE);
     }
 
     @Test (priority = 0, groups = "LoginTests")
     public void try_to_login_without_password() {
-        homepage.click_login();
+        homePage.click_login();
 
-        loginpage.enterMail(ACCOUNT_MAIL)
+        loginPage.enterEMail(ACCOUNT_MAIL)
                 .clickSignIn();
 
-        loginpage.checkPasswordErrorMessage(ERROR_MESSAGE);
+        loginPage.checkPasswordErrorMessage(ERROR_MESSAGE);
     }
 
     @Test (priority = 0, groups = "LoginTests")
     public void try_to_log_in_without_symbol() {
-        homepage.click_login();
+        homePage.click_login();
 
-        loginpage.enterMail("MAIL_WITHOUT_SYMBOL")
-                .enterPass(ACCOUNT_PASS)
+        loginPage.enterEMail("MAIL_WITHOUT_SYMBOL")
+                .enterPassword(ACCOUNT_PASS)
                 .clickSignIn();
 
-        loginpage.checkMailErrorMessage(ERROR_MESSAGE);
+        loginPage.checkMailErrorMessage(ERROR_MESSAGE);
     }
 
     @Test(priority = 0, groups = "LoginTests")
-    public void try_to_log_in_with_capital_pass_letters() {
-        homepage.click_login();
+    public void try_to_log_in_with_capital_password_letters() {
+        homePage.click_login();
 
-        loginpage.enterMail(ACCOUNT_MAIL)
-                .enterPass("VALID_PASSWORD_WITH_CAPITAL")
+        loginPage.enterEMail(ACCOUNT_MAIL)
+                .enterPassword("VALID_PASSWORD_WITH_CAPITAL")
                 .clickSignIn();
 
-        loginpage.checkErrorMessage(ERROR_MESSAGE);
+        loginPage.checkErrorMessage(ERROR_MESSAGE);
     }
 
     /**
@@ -98,10 +98,10 @@ public class LoginTests extends BaseSet {
      */
     @Test (priority = 1, groups = "LoginTests")
     public void open_page_then_login_with_valid_credentials() {
-        homepage.click_login();
+        homePage.click_login();
 
-        loginpage.enterMail(ACCOUNT_MAIL)
-                .enterPass(ACCOUNT_PASS)
+        loginPage.enterEMail(ACCOUNT_MAIL)
+                .enterPassword(ACCOUNT_PASS)
                 .clickRememberMeButton()
                 .clickSignIn();
     }
